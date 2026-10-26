@@ -13,6 +13,7 @@ gawk
 
 ## How to use
 orca_imagshift.sh orca_output_file.out multiplier
+
 gaus_imagshift.sh gaus_output_file.out multiplier
 
 Multiplier is used to multiply the normal mode coordinates before adding them  to the optimized geometry. The result can be closer or further from equilibrium, so please check the result in Avogadro or elsewhere to ensure that the initial geometry for the reoptimization is not meaningless.
