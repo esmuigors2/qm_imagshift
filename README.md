@@ -7,9 +7,11 @@ A bash script to produce geometries shifted along the imaginary modes, for reopt
 A bash script to produce geometries shifted along the imaginary modes, for reoptimization in <a href=https://https://gaussian.com>Gaussian</a>
 
 ## Dependencies
-shift_coords.py
 sed
+
 gawk
+
+for gaus_imagshift.sh, <a href="https://github.com/esmuigors2/findmingeom">findmingeom</a>
 
 ## How to use
 orca_imagshift.sh orca_output_file.out multiplier
