@@ -12,7 +12,7 @@ sed -n '/CARTESIAN COORDINATES (ANGSTROEM)/{:a;N;/\n *$/!ba;x;d};${x;p}' $1 | se
 grep -e 'imaginary mode' $1
 # Getting the ordinal numbers of the imaginary nodes:
 imaginaries=($(sed -n '/VIBRATIONAL FREQUENCIES/{:a;/imaginary mode/{s@:.*@@;s@ *@@;p};N;/^ *\n *$/!{s@^.*\n@@;ba}}' $1))
-[ ${#imaginaries[@]} -eq 0 ] && echo "No imaginary nodes found! Aborting..." && exit 3
+[ ${#imaginaries[@]} -eq 0 ] && echo "No imaginary nodes found! Aborting..." && rm /tmp/normalmode_orca_$$_last.xyz && exit 3
 # Getting all the normal modes:
 normalmodes="$(sed -n '/NORMAL MODES/{:a;/[0-9]/{/[a-zA_Z]/!p};N;/^ *\n *$/!{s@^.*\n@@;ba}}' $1)" && echo "Normal modes extracted!"
 # Selecting the imaginary normal modes, printing them to separate files, applying the shift to the last XYZ coordinates
