@@ -25,4 +25,4 @@ for ima in $(seq 1 ${#imaginaries[@]}); do
     shift_coords.py /tmp/normalmode_orca_$$_last.xyz /tmp/normalmode_orca_$$_${im}.tmp /tmp/normalmode_orca_$$_shifted.xyz $shifmul
 done
 # Moving the file to the $PWD and removing the temporary files if successful
-cp /tmp/normalmode_orca_$$_shifted.xyz ${1%.out}_shifted.xyz && rm /tmp/normalmode_orca_$$_* && echo "The shifted geometry saved in headless XYZ ${1%.out}_shifted.xyz"
+cp /tmp/normalmode_orca_$$_shifted.xyz ${1%.out}_shifted.xyz && rm /tmp/normalmode_orca_$$_* && echo "The shifted geometry saved in XYZ ${1%.out}_shifted.xyz"
