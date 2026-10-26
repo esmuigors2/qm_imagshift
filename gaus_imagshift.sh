@@ -7,8 +7,8 @@ findmingeom -xlj "$totlines" -a /tmp/normalmode_gaus_$$_last.xyz "$1"
 natoms=$(gawk '/NAtoms=/{print $2; exit}' "$1")
 # Getting the number of imaginary modes:
 numimag="$(gawk '/imaginary frequencies \(negative Sig/{print $2}' "$1")"
+[ -z "$numimag" ] && echo "No imaginary nodes found! Aborting..." && exit 3
 imaginaries=($(seq 1 $numimag))
-[ ${#imaginaries[@]} -eq 0 ] && echo "No imaginary nodes found! Aborting..." && exit 3
 # Getting all the normal modes:
 normalmodes="$(sed -n '/imaginary frequencies (negative Sig/,/^ *$/p' "$1" | sed '1,7d;$d')" && echo "Normal modes extracted!"
 # Selecting the imaginary normal modes, printing them to separate files, applying the shift to the last XYZ coordinates
