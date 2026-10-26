@@ -5,7 +5,7 @@
 # Getting the last XYZ coordinates:
 findmingeom -xlj "$totlines" -a /tmp/normalmode_gaus_$$_last.xyz "$1"
 natoms=$(gawk '/NAtoms=/{print $2; exit}' "$1")
-# Getting all the normal modes:
+# Getting the number of imaginary modes:
 numimag="$(gawk '/imaginary frequencies \(negative Sig/{print $2}' "$1")"
 imaginaries=($(seq 1 $numimag))
 [ ${#imaginaries[@]} -eq 0 ] && echo "No imaginary nodes found! Aborting..." && exit 3
