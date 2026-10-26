@@ -72,7 +72,7 @@ except IOError:
     sys.exit(10)
 rxyz.write(nrat+"\n")
 rxyz.write(title+", shifted away from the saddle\n")
-rxyz.write(allmyres)
+rxyz.write(allmyres+"\n")
 rxyz.close()
 print("File "+rxyz_file+" written!")
 
