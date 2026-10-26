@@ -6,7 +6,8 @@
 [ -n "$(grep -i -e '^ *!.*Opt' $1)" ] && [ -z "$(grep 'HURRAY' $1)" ] && echo "Warning: the optimization has not converged!"
 natoms=$(gawk '/Number of atoms/{print $NF; exit}' $1)
 # Getting the last XYZ coordinates:
-sed -n '/CARTESIAN COORDINATES (ANGSTROEM)/{:a;N;/\n *$/!ba;x;d};${x;p}' $1 | sed '1,2d;$d' > /tmp/normalmode_orca_$$_last.xyz && echo "Last geometry extracted!"
+echo -e "$natoms\n   original geometry" > /tmp/normalmode_orca_$$_last.xyz
+sed -n '/CARTESIAN COORDINATES (ANGSTROEM)/{:a;N;/\n *$/!ba;x;d};${x;p}' $1 | sed '1,2d;$d' >> /tmp/normalmode_orca_$$_last.xyz && echo "Last geometry extracted!"
 [ $(wc -l /tmp/normalmode_orca_$$_last.xyz) -eq 0 ] && echo "The molecule geometry was not successfully extracted! Aborting..." && exit 2
 grep -e 'imaginary mode' $1
 # Getting the ordinal numbers of the imaginary nodes:
