@@ -3,7 +3,7 @@
 # Setting the multiplier for the normal mode coordinates before adding them to the XYZ
 [ -n "$2" ] && shifmul="$2" || shifmul="0.2"
 # Getting the last XYZ coordinates:
-findmingeom -xlj "$totlines" -a /tmp/normalmode_gaus_$$_last.xyz "$1"
+findmingeom -xlj "$totlines" -a /tmp/normalmode_gaus_$$_last "$1"
 natoms=$(gawk '/NAtoms=/{print $2; exit}' "$1")
 # Getting the number of imaginary modes:
 numimag="$(gawk '/imaginary frequencies \(negative Sig/{print $2}' "$1")"
