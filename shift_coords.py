@@ -7,7 +7,7 @@ def shift_coords(xyzstruct, shiftstruct, shifte = '0.5'):
   sftmas = shiftstruct.splitlines()
   xyzl = len(xyzmas)
   sftl = len(sftmas)
-  print("Length of the first list is "+str(xyzl))
+  print("Length of the structure list is "+str(xyzl) + " and length of the shift list is "+ str(sftl))
   for line in range(0,xyzl):
       xyzlinearr = xyzmas[line].split()
       sftlinearr = sftmas[line].split()
@@ -60,10 +60,12 @@ myxyz = allmyxyz.splitlines()
 nrat = myxyz[0]
 title = myxyz[1]
 myxyz = myxyz[2:]
-print("Length of myxyz is "+str(len(myxyz)))
+#print("Length of myxyz is "+str(len(myxyz)))
 allmyxyz = ""
 allmyxyz = "\n".join(myxyz)
 #print(allmyxyz)
+#print("-----")
+#print(allmysft)
 allmyres = shift_coords(allmyxyz, allmysft, shifta)
 try:
     rxyz = open(rxyz_file, "w+")
