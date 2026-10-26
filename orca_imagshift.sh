@@ -21,7 +21,7 @@ for ima in $(seq 1 ${#imaginaries[@]}); do
     [ -f /tmp/normalmode_orca_$$_shifted.xyz ] && rm /tmp/normalmode_orca_$$_last.xyz && mv /tmp/normalmode_orca_$$_shifted.xyz /tmp/normalmode_orca_$$_last.xyz
     im=$((ima-1))
     # I have tried an alternative way to rearrange the normal mode coords into XYZ; it turned out to produce much more radical shifts, hence that must be the wrong way, and what is below is the right way:
-    echo "$normalmodes" | gawk '/ '"${imaginaries[$im]}"' [^.]*$/ || / '"${imaginaries[$im]}"'$/ {j=0; for(i=1;i<NF;i++) {if($i ~ '"${imaginaries[$im]}"') j=i }; for(i=0;i<3*'"$natoms"';++i) {getline; print $(j+1)}}' | sed 'N;N;s@\n@   @g' > /tmp/normalmode_orca_$$_${im}.tmp
+    echo "$normalmodes" | gawk '/ '"${imaginaries[$im]}"' [^.]*$/ || / '"${imaginaries[$im]}"'$/ {j=0; for(i=1;i<NF+1;i++) {if($i ~ '"${imaginaries[$im]}"') j=i }; for(i=0;i<3*'"$natoms"';++i) {getline; print $(j+1)}}' | sed 'N;N;s@\n@   @g' > /tmp/normalmode_orca_$$_${im}.tmp
     shift_coords.py /tmp/normalmode_orca_$$_last.xyz /tmp/normalmode_orca_$$_${im}.tmp /tmp/normalmode_orca_$$_shifted.xyz $shifmul
 done
 # Moving the file to the $PWD and removing the temporary files if successful
